@@ -23,7 +23,7 @@ With net sales data available to be aggregated on customer, market or product le
  
 2. Supply Chain: [SQL Project_supply chain.sql](https://github.com/Sophie-XL/SQL-Retail-Sales-Analysis/blob/a4c72d2a6dd73e98071c72d35ab1109afa00a23c/SQL%20Project_supply%20chain.sql)
 
-The goal of this task is to find variance between forecasted sales quantity and the actual sold quantity. With the forecast accuracy data (forecast accuracy = 100% - absolute error%) in hand, the supply chain manager can slice and dice the data based on different criteria like customer, product or region. Theus they can understand, and more importantly improve, their ability to accurately forecast demand.
+The goal of this task is to find variance between forecasted sales quantity and the actual sold quantity. With the forecast accuracy data (forecast accuracy = 100% - absolute error%) in hand, the supply chain manager can slice and dice the data based on different criteria like customer, product or region. Thus they can understand, and more importantly improve, their ability to accurately forecast demand.
  
 ![sales forecast table](https://github.com/Sophie-XL/SQL-Retail-Sales-Analysis/blob/ce78b366216e9f19552947f30622f8a5083e5224/sales%20forecast%20accuracy.png)
 
