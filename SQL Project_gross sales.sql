@@ -95,6 +95,21 @@ END
   ORDER BY fiscal_year;
   
   -- Task #4: Market Badge >5 million total quantity
+  -- User defined function
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_badge`(
+sold_quantity int
+) RETURNS varchar(10) CHARSET utf8mb4
+    DETERMINISTIC
+BEGIN
+    declare badge varchar(10);
+    
+    case
+		when sold_quantity>5000000 then set badge="Gold";
+        else set badge="Silver";
+    end case;
+RETURN badge;
+END
+  -- SQL script
   SELECT   c.market,
            Sum(s.sold_quantity)            AS total_sold_quantity,
            Get_badge(Sum(s.sold_quantity)) AS badge
@@ -104,7 +119,24 @@ END
   WHERE    c.market = "india"
   AND      Get_fiscal_year(s.date)=2021
   GROUP BY c. market;
-  
+  -- Stored Procedure
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_market_badge`(
+in_market text,
+in_fiscal_year year
+)
+BEGIN
+
+select
+c.market,
+sum(s.sold_quantity) as total_sold_quantity,
+get_badge(sum(s.sold_quantity)) as badge
+from 
+fact_sales_monthly s
+join dim_customer c
+on s.customer_code = c.customer_code
+where c.market=in_market and get_fiscal_year(s.date)=in_fiscal_year
+group by c.market;
+END
   -- Task #5: Get top selling product in each division
   WITH cte2
 AS
